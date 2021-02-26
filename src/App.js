@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Notes from './components/notes/Notes';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Navigation } from './components/Navigation';
+import { Home } from './components/Home';
+import { NoteDetail } from './components/notes/NoteDetail';
+import { UpdateNote } from './components/notes/UpdateNote';
+import { CreateNote } from './components/notes/CreateNote';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navigation/>
+      <br/>
+      <Switch>
+        <Route path='/create' >
+          <CreateNote/>
+        </Route>
+        <Route path='/update/:id'>
+          <UpdateNote/>
+        </Route>
+        <Route path='/note/:id' >
+          <NoteDetail/>
+        </Route>
+        <Route path='/notes' >
+          <Notes/>
+        </Route>
+        <Route path='/' >
+          <Home/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
